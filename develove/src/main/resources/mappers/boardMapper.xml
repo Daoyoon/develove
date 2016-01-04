@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.emopicture.persistence.NoticeBoardMapper">
+
+	
+	<resultMap type="com.emopicture.domain.NoticeBoardVO" id="resultset"></resultMap>
+
+	
+	<select id="search" resultType="com.emopicture.domain.NoticeBoardVO">
+		<![CDATA[
+			select * 
+			from
+			(
+			  select /*+index_desc(tbl_noticeboard  notice_pk_bno)*/
+			  rownum rn, bno, title, content, nickname, regdate, viewcnt, replycnt 
+			  from tbl_noticeboard  
+			  where bno > 0 
+			]]>
+				<if test="searchType == 't'.toString()">
+					and title like '%'||#{keyword}||'%'
+				</if>	
+				<if test="searchType == 'c'.toString()">
+					and title like '%'||#{keyword}||'%'
+				</if>	
+				<if test="searchType == 'w'.toString()">
+					and title like '%'||#{keyword}||'%'
+				</if>	
+				<if test="searchType == 'tc'.toString()">
+					and title like '%'||#{keyword}||'%'
+				</if>	
+				<if test="searchType == 'cw'.toString()">
+					and title like '%'||#{keyword}||'%'
+				</if>	
+				<if test="searchType == 'tcw'.toString()">
+					and title like '%'||#{keyword}||'%'
+				</if>			
+	 		<![CDATA[
+			  and rownum <= #{pageNo} * #{perPage} 
+			) 
+			where rn> (#{pageNo} - 1) * #{perPage} 
+			]]>
+	</select>	
+	
+	
+	<insert id="create">
+		insert into tbl_noticeboard (bno,mno, title, content, nickname) values (seq_noticeboard.nextval,#{mno}, #{title}, #{content}, #{nickname})
+	</insert>
+	
+	<select id="read" resultType="com.emopicture.domain.NoticeBoardVO">
+		select * from tbl_noticeboard where bno=#{bno}
+	</select>
+	
+	<update id="update">
+		update tbl_noticeboard set title = #{title}, content = #{content},nickname = #{nickname}, updatedate = sysdate where bno=#{bno}
+	</update>
+	
+	<delete id="delete">
+		delete from tbl_noticeboard where bno = #{bno}
+	</delete>
+	
+	
+	<update id="viewcnt">
+		update tbl_noticeboard set viewcnt=viewcnt+1 where bno = #{bno}
+	</update>
+	
+	<select id="totalcount" resultType="int">
+		select count(*) from tbl_noticeboard
+	</select>
+	
+	<update id="updatereply">
+		update tbl_noticeboard set replycnt = (select count(rno) 
+		from tbl_noticereply where bno = #{bno}) where bno = #{bno}
+	</update>	
+	<select id="listall" resultType="com.emopicture.domain.NoticeBoardVO">
+		select * from tbl_noticeboard
+	</select>
+
+</mapper>
+
