@@ -28,10 +28,10 @@
 		<div style="width:70%;margin-left:15%;">
 			<table class="table tabel-bordered" >
 				<tr>
-					<th style="width:5%">BNO</th>
-					<th style="width:30%">TITLE</th>
-					<th style="width:15%">WRITER</th>
-					<th style="width:15%">REGDATE</th>
+					<th style="width:5%">글번호</th>
+					<th style="width:30%">제 목</th>
+					<th style="width:15%">작성자</th>
+					<th style="width:15%">등록일</th>
 					<th style="width:5%">조회수</th>
 				</tr>
 			

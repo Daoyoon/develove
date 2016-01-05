@@ -19,6 +19,12 @@ public class Criteria {
 		this.searchType="";
 		this.keyword="";
 	}
+	
+	
+
+	
+	
+	
 	public int getPageNo() {
 		return pageNo;
 	}

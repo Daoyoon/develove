@@ -172,7 +172,7 @@ hr {
 		display: block;
 		float: left;
 		height: 100%;
-		border-right: 1px solid #c6d0da;
+		border-right: 1px solid white;
 
 }
 
@@ -430,7 +430,7 @@ input.gn-search:focus {
 }
 
 .gn-menu-wrapper.gn-open-all {
-		width: 340px
+		width: 271px
 }
 
 .gn-menu-wrapper.gn-open-all .gn-submenu li {
@@ -654,7 +654,6 @@ form#contact-form input:focus,form#contact-form select:focus,form#contact-form t
 	margin-right:60px;
 
 }
-
 
 .topMenu a{
 	margin:0;

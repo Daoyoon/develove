@@ -15,20 +15,6 @@ public class PageMaker {
 	
 	private Criteria cri;
 	
-	public String makeSearch(int pageNo){
-		
-		UriComponents uriComponents = UriComponentsBuilder.newInstance()
-				.queryParam("pageNo", pageNo)
-				.queryParam("perPageNum", cri.getPerPageNum())
-				.queryParam("searchType", ((Criteria)cri).getSearchType())
-				.queryParam("keyword", ((Criteria)cri).getKeyword())
-				.build();
-		
-		return uriComponents.toUriString();
-		
-	}
-	
-	
 	public void setCri(Criteria cri){
 		this.cri = cri;
 	}
@@ -39,22 +25,43 @@ public class PageMaker {
 		calcData();
 	}
 	
+	public String makeQuery(int pageNo){
+		
+		UriComponents uriComponents=UriComponentsBuilder.newInstance()
+				.queryParam("pageNo", pageNo)
+				.queryParam("perPageNum",cri.getPerPageNum())
+				.build();
+		
+		return uriComponents.toUriString();
+	}
+	
 	private void calcData(){
-		endPage = (int) (Math.ceil(cri.getPageNo())/ (double) displayPageNum);
+		endPage=(int)(Math.ceil(cri.getPageNo()/(double)displayPageNum)*displayPageNum);
 		
-		startPage = (endPage - displayPageNum) + 1;
+		startPage=(endPage-displayPageNum)+1;
 		
-		int tempEndPage = (int) (Math.ceil(totalCount / (double)cri.getPerPageNum()));
+		int tempEndPage=(int)(Math.ceil(totalCount/(double)cri.getPerPageNum()));
 		
-		if(endPage > tempEndPage){
+		if(endPage>tempEndPage){
 			endPage = tempEndPage;
 		}
 		
-		prev = startPage == 1 ? false:true;
+		prev=startPage==1 ? false : true;
 		
-		next = endPage * cri.getPerPageNum() >= totalCount ? false:true;
+		next=endPage *cri.getPerPageNum()>= totalCount ? false: true;
+				
 	}
 
+	public String makeSearch(int pageNo){
+		
+		UriComponents uriComponents=UriComponentsBuilder.newInstance()
+				.queryParam("pageNo", pageNo)
+				.queryParam("perPageNum", cri.getPerPageNum())
+				.queryParam("searchType", ((Criteria)cri).getSearchType())
+				.queryParam("keyword", ((Criteria)cri).getKeyword())
+				.build();
+		return uriComponents.toUriString();
+	}
 	public int getStartPage() {
 		return startPage;
 	}

@@ -96,8 +96,8 @@ pageEncoding="UTF-8"%>
   		
 		<div>	
 			<div>
-				<div >
-					닉네임<input id="newReplyWriter" value="${board.nickname }">
+				<div style="margin-top:10px;margin-left:15%;">
+					<input  type="text" name="replyer" id="newReplyWriter" style="width:200px" placeholder="작성자">
 				</div>
 	    		<div style="margin-top:10px;margin-left:15%;">
             		<textarea rows="0" cols="0" onpaste="return" type="text" name="replyer" id="newReplyText" style="width: 71%;height:70px;" placeholder="댓글을 작성하세요"></textarea>
@@ -108,7 +108,6 @@ pageEncoding="UTF-8"%>
 	    	</div>
 		<br>
         </div>  		
-  
     </div>
 
 
@@ -138,7 +137,7 @@ pageEncoding="UTF-8"%>
     <input type="hidden" name="bno" >
 </form>
 
-  <ul class='pagination'></ul>
+<ul class='pagination'></ul>
 
 <div id="modDiv" class="modal " style="display: none;">
    <div class="modal-title"></div>
@@ -268,7 +267,6 @@ pageEncoding="UTF-8"%>
 				        'content-Type' : 'application/json',
 				        'X-HTTP-Method-Override' : 'DELETE'
 				     },
-				     data : JSON.stringify({replytext : replytext}),
 				     dataType : "text",
 				     success : function(result){
 				        console.log("result: "+result);

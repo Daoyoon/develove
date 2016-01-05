@@ -19,7 +19,11 @@ public class HomeController {
 	   return "register";
    }
    
-
+   @RequestMapping(value="/notice", method=RequestMethod.GET)
+   public String notice(){
+	   return "notice";
+   }
+   
 
    
    @RequestMapping(value="/qna", method=RequestMethod.GET)

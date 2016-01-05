@@ -14,13 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.emopicture.domain.NoticeReplyVO;
+import com.emopicture.domain.ReplyVO;
 import com.emopicture.persistence.NoticeBoardMapper;
 import com.emopicture.service.NoticeReplyService;
-
-
-
-
 
 @RestController
 @RequestMapping("/noticereplies/*")
@@ -36,7 +32,7 @@ public class NoticeReplyController {
 
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public ResponseEntity<String> create(@RequestBody NoticeReplyVO vo ) {
+	public ResponseEntity<String> create(@RequestBody ReplyVO vo ) {
 		System.out.println("create");
 		ResponseEntity<String> entity = null;
 		try {
@@ -52,15 +48,15 @@ public class NoticeReplyController {
 	
 
 	@RequestMapping(value="/{bno}", method=RequestMethod.GET)
-	public ResponseEntity<List<NoticeReplyVO>> listAll(@PathVariable("bno") Integer bno){
-		ResponseEntity<List<NoticeReplyVO>> entity = null;
+	public ResponseEntity<List<ReplyVO>> listAll(@PathVariable("bno") Integer bno){
+		ResponseEntity<List<ReplyVO>> entity = null;
 		try{
 			
-			List<NoticeReplyVO> list = service.list(bno);
+			List<ReplyVO> list = service.list(bno);
 				System.out.println(service.list(bno));
 			int replyCount = service.count(bno);
 			
-			entity = new ResponseEntity<List<NoticeReplyVO>>(list, HttpStatus.OK);
+			entity = new ResponseEntity<List<ReplyVO>>(list, HttpStatus.OK);
 		}catch(Exception e){
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -68,30 +64,10 @@ public class NoticeReplyController {
 		return entity;
 	}
 	
-//	@RequestMapping(value="/{bno}/{page}", method=RequestMethod.GET)
-//	public ResponseEntity<Map<String, Object>> listPage(@PathVariable("bno") Integer bno, @PathVariable("page") Integer page){
-//		ResponseEntity<Map<String,Object>> entity = null;
-//		try{
-//			Criteria cri = new Criteria();
-//			cri.setPageNo(page);
-//			PageMaker pageMaker = new PageMaker();
-//			pageMaker.setCri(cri);
-//			Map<String, Object> map = new HashMap<>();
-//			List<QnaReplyVO> list = service.listPage(bno, cri);
-//			map.put("list", list);	
-//			int replyCount = service.count(bno);
-//			pageMaker.setTotalCount(replyCount);
-//			map.put("pageMaker", pageMaker);
-//			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
-//		}catch(Exception e){
-//			e.printStackTrace();
-//			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//		}
-//		return entity;
-//	}
+
 	
 	@RequestMapping(value = "/{rno}", method = { RequestMethod.PUT, RequestMethod.PATCH})
-	public ResponseEntity<String> update(@PathVariable("rno") Integer rno, @RequestBody NoticeReplyVO vo) {
+	public ResponseEntity<String> update(@PathVariable("rno") Integer rno, @RequestBody ReplyVO vo) {
 		logger.info("Update.....");
 		ResponseEntity<String> entity = null;
 		try {
@@ -108,7 +84,7 @@ public class NoticeReplyController {
 
 	
 	@RequestMapping(value = "/{rno}", method = {RequestMethod.DELETE, RequestMethod.POST})
-	public ResponseEntity<String> delete(@PathVariable("rno") Integer rno, @RequestBody NoticeReplyVO vo) {
+	public ResponseEntity<String> delete(@PathVariable("rno") Integer rno, @RequestBody ReplyVO vo) {
 		logger.info("Delete.....");
 		ResponseEntity<String> entity = null;
 		try {

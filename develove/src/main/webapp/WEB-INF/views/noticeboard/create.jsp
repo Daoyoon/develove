@@ -7,7 +7,6 @@
 .fileDrop {
 	width : 80%;
 	height : 200px;
-	border : 1px dotted blue;
 }
 
 small {
@@ -20,7 +19,7 @@ small {
 
 <div class="content-wrapper">
    <!-- Content Header (Page header) -->
-	<section class="content-header"  style="margin-left:10%">
+	<section class="content-header"  style="width:70%;margin-left:15%;">
       <ol class="breadcrumb">
          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
          <li class="active">글쓰기</li>

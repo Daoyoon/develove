@@ -16,8 +16,6 @@ public class NoticeBoardServiceImpl implements NoticeBoardService<NoticeBoardVO,
 	@Inject
 	private NoticeBoardMapper mapper;
 	
-	
-
 
 	@Override
 	public void create(NoticeBoardVO vo) throws Exception {

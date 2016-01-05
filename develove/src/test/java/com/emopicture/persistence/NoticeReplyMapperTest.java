@@ -9,9 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.emopicture.domain.Criteria;
-import com.emopicture.domain.NoticeReplyVO;
 import com.emopicture.domain.PageMaker;
-import com.emopicture.persistence.NoticeBoardMapper;
+import com.emopicture.domain.ReplyVO;
 import com.emopicture.service.NoticeReplyService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,12 +24,12 @@ public class NoticeReplyMapperTest {
 	@Autowired
 	private NoticeReplyService service;
 
-	private NoticeReplyVO vo;
+	private ReplyVO vo;
 	
 	
 	@Test
 	public void createTest() throws Exception{
-		vo = new NoticeReplyVO();
+		vo = new ReplyVO();
 		vo.setBno(3);
 		vo.setReplytext("댓글 =============== 댓글 테스트 댓글 달리나???");
 		vo.setReplyer("댓글 작성자 테스트");
@@ -39,7 +38,7 @@ public class NoticeReplyMapperTest {
 	
 	@Test
 	public void updateTest() throws Exception{
-		vo = new NoticeReplyVO();
+		vo = new ReplyVO();
 		vo.setReplytext("업데이트 테스트");
 		vo.setReplyer("Doyoon");
 		vo.setRno(1);

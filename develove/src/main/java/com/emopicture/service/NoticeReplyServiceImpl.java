@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.emopicture.domain.Criteria;
-import com.emopicture.domain.NoticeReplyVO;
+import com.emopicture.domain.ReplyVO;
 import com.emopicture.persistence.NoticeBoardMapper;
 import com.emopicture.persistence.NoticeReplyMapper;
 
 @Service
-public class NoticeReplyServiceImpl implements NoticeReplyService<NoticeReplyVO, Integer> {
+public class NoticeReplyServiceImpl implements NoticeReplyService<ReplyVO, Integer> {
 
 	@Inject
 	private NoticeReplyMapper mapper;
@@ -25,7 +25,7 @@ public class NoticeReplyServiceImpl implements NoticeReplyService<NoticeReplyVO,
 	
 	@Transactional
 	@Override
-	public void create(NoticeReplyVO vo) throws Exception {
+	public void create(ReplyVO vo) throws Exception {
 		mapper.create(vo);
 		bMapper.updatereply(vo.getBno());
 	}
@@ -36,17 +36,17 @@ public class NoticeReplyServiceImpl implements NoticeReplyService<NoticeReplyVO,
 	}
 
 	@Override
-	public void update(NoticeReplyVO vo) throws Exception {
+	public void update(ReplyVO vo) throws Exception {
 		mapper.update(vo);
 	}
 
 	@Override
-	public List<NoticeReplyVO> list(Integer bno) throws Exception {
+	public List<ReplyVO> list(Integer bno) throws Exception {
 		return mapper.list(bno);
 	}
 
 	@Override
-	public List<NoticeReplyVO> listPage(Integer bno, Criteria cri) throws Exception {
+	public List<ReplyVO> listPage(Integer bno, Criteria cri) throws Exception {
 		return mapper.listPage(bno, cri);
 	}
 
